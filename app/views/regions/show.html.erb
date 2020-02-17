@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @region.region %>
+</p>
+
+<% Distillery.all.where(region_id: @region.id).each do |d| %>
+<%= link_to d.name, distillery_path(d) %>
+<% end %>
+<br>
+<br>
+<%= link_to 'Edit', edit_region_path(@region) %> |
+<%= link_to 'Back', regions_path %>

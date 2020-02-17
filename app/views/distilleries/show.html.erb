@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @distillery.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <br>
+  <%= @distillery.stree_address %>
+  <br>
+  <%= @distillery.city %>
+  <br>
+  <%= @distillery.zip %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= link_to Region.find(@distillery.region_id).region, Region.find(@distillery.region_id) %>
+</p>
+
+<p>
+  <strong>Tours:</strong>
+  <% if @distillery.tours == true %>
+    Yes
+    <br>
+    <strong>Cost:</strong> $<%= @distillery.tour_cost %>
+  <% else %>
+    This distillery does not offer tours at this time.
+  <% end %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= link_to 'Click here', "http://#{@distillery.website}", :target => '_blank' %>
+</p>
+
+<%= link_to 'Edit', edit_distillery_path(@distillery) %> |
+<%= link_to 'Back', distilleries_path %>

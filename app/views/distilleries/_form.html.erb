@@ -1,0 +1,57 @@
+<%= form_with(model: distillery, local: true) do |form| %>
+  <% if distillery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(distillery.errors.count, "error") %> prohibited this distillery from being saved:</h2>
+
+      <ul>
+        <% distillery.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stree_address %>
+    <%= form.text_field :stree_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip %>
+    <%= form.text_field :zip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region_id %>
+    <%= form.select :region_id, Region.all.map {|r| [r.region, r.id] }, prompt:'-' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tours %>
+    <%= form.check_box :tours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tour_cost %>
+    <%= form.text_field :tour_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :website %>
+    <%= form.text_field :website %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
