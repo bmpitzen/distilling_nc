@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @spirit.name %>
+</p>
+
+<p>
+  <strong>Distillery:</strong>
+  <%= link_to Distillery.find(@spirit.distillery_id).name, Distillery.find(@spirit.distillery_id) %>
+</p>
+
+
+<p>
+  <strong>Spirit type:</strong>
+  <%= link_to SpiritType.find(@spirit.spirit_type_id).category, SpiritType.find(@spirit.spirit_type_id) %>
+</p>
+
+<p>
+  <strong>Proof:</strong>
+  <%= @spirit.proof %>
+</p>
+
+<%= link_to 'Edit', edit_spirit_path(@spirit) %> |
+<%= link_to 'Back', spirits_path %>

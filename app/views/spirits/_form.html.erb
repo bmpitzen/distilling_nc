@@ -1,0 +1,37 @@
+<%= form_with(model: spirit, local: true) do |form| %>
+  <% if spirit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spirit.errors.count, "error") %> prohibited this spirit from being saved:</h2>
+
+      <ul>
+        <% spirit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :distillery_id %>
+    <%= form.select :distillery_id, Distillery.all.map {|d| [d.name, d.id] }, prompt:'-' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :spirit_type_id %>
+    <%= form.select :spirit_type_id, SpiritType.all.map {|t| [t.category, t.id] }, prompt:'-' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :proof %>
+    <%= form.text_field :proof %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

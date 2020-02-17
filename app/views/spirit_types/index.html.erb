@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Spirit Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spirit_types.each do |spirit_type| %>
+      <tr>
+        <td><%= spirit_type.category %></td>
+        <td><%= link_to 'Show', spirit_type %></td>
+        <td><%= link_to 'Edit', edit_spirit_type_path(spirit_type) %></td>
+        <td><%= link_to 'Destroy', spirit_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spirit Type', new_spirit_type_path %>

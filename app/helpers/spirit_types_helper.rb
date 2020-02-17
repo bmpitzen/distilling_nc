@@ -1,0 +1,2 @@
+module SpiritTypesHelper
+end

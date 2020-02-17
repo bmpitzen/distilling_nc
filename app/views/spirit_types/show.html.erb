@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @spirit_type.category %>
+</p>
+
+<% Spirit.all.where(spirit_type_id: @spirit_type.id).each do |s| %>
+<%= link_to s.name, spirit_path(s) %>
+<% end %>
+
+
+<br>
+<br>
+<%= link_to 'Edit', edit_spirit_type_path(@spirit_type) %> |
+<%= link_to 'Back', spirit_types_path %>

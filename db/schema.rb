@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_154505) do
+ActiveRecord::Schema.define(version: 2020_02_17_193444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,5 +35,24 @@ ActiveRecord::Schema.define(version: 2020_02_17_154505) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "spirit_types", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "spirits", force: :cascade do |t|
+    t.string "name"
+    t.bigint "distillery_id", null: false
+    t.bigint "spirit_type_id", null: false
+    t.string "proof"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["distillery_id"], name: "index_spirits_on_distillery_id"
+    t.index ["spirit_type_id"], name: "index_spirits_on_spirit_type_id"
+  end
+
   add_foreign_key "distilleries", "regions"
+  add_foreign_key "spirits", "distilleries"
+  add_foreign_key "spirits", "spirit_types"
 end

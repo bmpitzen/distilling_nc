@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Spirits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Distillery</th>
+      <th>Spirit type</th>
+      <th>Proof</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spirits.each do |spirit| %>
+      <tr>
+        <td><%= spirit.name %></td>
+        <td><%= link_to Distillery.find(spirit.distillery_id).name, Distillery.find(spirit.distillery_id) %></td>
+        <td><%= link_to SpiritType.find(spirit.spirit_type_id).category, SpiritType.find(spirit.spirit_type_id) %></td>
+        <td><%= spirit.proof %></td>
+        <td><%= link_to 'Show', spirit %></td>
+        <td><%= link_to 'Edit', edit_spirit_path(spirit) %></td>
+        <td><%= link_to 'Destroy', spirit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spirit', new_spirit_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :spirits
+  resources :spirit_types
   resources :regions
   resources :distilleries
   root 'home#index'
