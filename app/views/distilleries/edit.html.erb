@@ -1,6 +1,12 @@
-<h1>Editing Distillery</h1>
+<%= render 'menubar' %>
+
+<body class="mx-auto container">
+
+<h1>Editing <%= @distillery.name%> Information</h1>
 
 <%= render 'form', distillery: @distillery %>
 
 <%= link_to 'Show', @distillery %> |
 <%= link_to 'Back', distilleries_path %>
+
+</body>

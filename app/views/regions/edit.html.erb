@@ -1,6 +1,10 @@
-<h1>Editing Region</h1>
+<%= render 'menubar' %>
+
+<body class="mx-auto container">
+<h1>Editing <%= @region.region %> Region</h1>
 
 <%= render 'form', region: @region %>
 
 <%= link_to 'Show', @region %> |
 <%= link_to 'Back', regions_path %>
+</body>

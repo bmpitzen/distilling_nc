@@ -1,11 +1,13 @@
-<p id="notice"><%= notice %></p>
+<%= render 'menubar' %>
+
+<body class="mx-auto container">
 
 <h1><strong>All Distilleries</strong></h1>
 <br>
 
     <% @distilleries.each do |distillery| %>
         <H1><%= link_to distillery.name, distillery %></H1>
-        <h4>Location: <%= distillery.stree_address %>, <%= distillery.city %>, NC <%= distillery.zip %></h4>
+        <h4>Location: <address><%= distillery.stree_address %>, <%= distillery.city %>, NC <%= distillery.zip %></address></h4>
         <h4>Region: <%= link_to Region.find(distillery.region_id).region, Region.find(distillery.region_id) %></h4>
         <% if distillery.tours == true %>
           <h4> Tour cost: $<%= distillery.tour_cost %></h4>
@@ -18,3 +20,5 @@
 <br>
 
 <%= link_to 'New Distillery', new_distillery_path %>
+
+</body>

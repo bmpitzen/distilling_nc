@@ -28,7 +28,7 @@ class DistilleriesController < ApplicationController
 
     respond_to do |format|
       if @distillery.save
-        format.html { redirect_to @distillery, notice: 'Distillery was successfully created.' }
+        format.html { redirect_to @distillery, class: "alert alert-info", role: "alert", notice: 'Distillery was successfully created.' }
         format.json { render :show, status: :created, location: @distillery }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DistilleriesController < ApplicationController
   def update
     respond_to do |format|
       if @distillery.update(distillery_params)
-        format.html { redirect_to @distillery, notice: 'Distillery was successfully updated.' }
+        format.html { redirect_to @distillery, class: "alert alert-info", role: "alert", notice: 'Distillery was successfully updated.' }
         format.json { render :show, status: :ok, location: @distillery }
       else
         format.html { render :edit }
