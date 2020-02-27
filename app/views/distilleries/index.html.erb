@@ -16,7 +16,6 @@
   </thead>
 
   <tbody>
-  <% @distilleries = @distilleries.map.sort_by(&:name) %>
     <% @distilleries.each do |d| %>
       <tr>
         <td scope="row"><%= link_to d.name, d %></td>

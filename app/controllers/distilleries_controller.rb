@@ -6,7 +6,7 @@ class DistilleriesController < ApplicationController
   # GET /distilleries
   # GET /distilleries.json
   def index
-    @distilleries = Distillery.all
+    @distilleries = Distillery.all.map.sort_by(&:name)
   end
 
   # GET /distilleries/1
