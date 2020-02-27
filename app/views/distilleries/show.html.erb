@@ -1,20 +1,20 @@
 <%= render 'menubar' %>
 
 <body class="mx-auto container">
+  <u><%= link_to '< Back', distilleries_path %></u>
+  <br>
+  <br>
 
-  <p>
-    <strong>Name:</strong>
+  <h3>
     <%= @distillery.name %>
-  </p>
+  </h3>
   
   <p>
     <strong>Address:</strong>
     <br>
-    <%= @distillery.stree_address %>
+    <%= @distillery.street_address %>
     <br>
-    <%= @distillery.city %>
-    <br>
-    <%= @distillery.zip %>
+    <%= @distillery.city %>, NC <%= @distillery.zip %>
   </p>
   
   <p>
@@ -27,25 +27,38 @@
     <% if @distillery.tours == true %>
       Yes
       <br>
-      <strong>Cost:</strong> $<%= @distillery.tour_cost %>
+
+      <% if @distillery.tour_cost.to_i > 0 %>
+        <strong>Cost:</strong> $<%= @distillery.tour_cost %>
+      <% else %> 
+        <strong>Cost:</strong> Free!
+      <% end %>
     <% else %>
-      This distillery does not offer tours at this time.
+      Sadly, this distillery does not offer tours at this time.
     <% end %>
   </p>
   
   <p>
     <strong>Website:</strong>
-    <%= link_to 'Click here', "http://#{@distillery.website}", :target => '_blank' %>
+    <%= link_to @distillery.website, "http://#{@distillery.website}", :target => '_blank' %>
   </p>
   
-  <li>
-    <strong>Spirits</strong>
+
+  <% if Spirit.all.where(distillery_id: @distillery.id).exists? %>
+  <table class="table">
+  <tr>
+    <th>Spirit</th>
+    <th>Category</th>
+    <th>Strength</th>
+  </tr>
+  <tr>
     <% Spirit.all.where(distillery_id: @distillery.id).each do |s| %>
-  <%= link_to s.name, spirit_path(s) %>
+      <td><strong><%= link_to s.name, spirit_path(s) %></strong></td>
+      <td><%= link_to SpiritType.find(s.spirit_type_id).category, SpiritType.find(s.spirit_type_id) %></td>
+      <td><%= s.proof %></td>
+    <% end %>
+  </tr>
+  </table>
   <% end %>
-  </li>
-  
-  <%= link_to 'Edit', edit_distillery_path(@distillery) %> |
-  <%= link_to 'Back', distilleries_path %>
 
 </body>

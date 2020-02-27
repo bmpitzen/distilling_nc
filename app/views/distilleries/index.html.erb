@@ -1,24 +1,41 @@
-<%= render 'menubar' %>
+<%= render "menubar" %>
 
 <body class="mx-auto container">
 
 <h1><strong>All Distilleries</strong></h1>
 <br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Distillery</th>
+      <th scope="col">Address</th>
+      <th scope="col">Region</th>
+      <th scope="col">Tours</th>
+      <th scope="col">Website</th>
+    </tr>
+  </thead>
 
-    <% @distilleries.each do |distillery| %>
-        <H1><%= link_to distillery.name, distillery %></H1>
-        <h4>Location: <address><%= distillery.stree_address %>, <%= distillery.city %>, NC <%= distillery.zip %></address></h4>
-        <h4>Region: <%= link_to Region.find(distillery.region_id).region, Region.find(distillery.region_id) %></h4>
-        <% if distillery.tours == true %>
-          <h4> Tour cost: $<%= distillery.tour_cost %></h4>
+  <tbody>
+  <% @distilleries = @distilleries.map.sort_by(&:name) %>
+    <% @distilleries.each do |d| %>
+      <tr>
+        <td scope="row"><%= link_to d.name, d %></td>
+        <td><address><%= d.street_address %>, <%= d.city %>, NC <%= d.zip %></address></td>
+        <td><%= link_to Region.find(d.region_id).region, Region.find(d.region_id) %></td>
+        <% if d.tours == true %>
+          <% if d.tour_cost.to_i > 0 %>
+            <td>Tour cost: $<%= d.tour_cost %></td>
+          <% else %> 
+            <td>Tour cost: Free!</td>
+          <% end %>
+        <% else %>
+          <td>No</td>
         <% end %>
-        <h4><%= link_to 'Website', "http://#{distillery.website}", :target => '_blank' %></h4>
+        <td><%= link_to d.website, "http://#{d.website}", :target => "_blank" %></td>
+      </tr>
     <% end %>
+  </tbody>
 
-
-
-<br>
-
-<%= link_to 'New Distillery', new_distillery_path %>
+</table>
 
 </body>

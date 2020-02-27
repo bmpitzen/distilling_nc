@@ -2,7 +2,7 @@
 
 one:
   name: MyString
-  stree_address: MyString
+  street_address: MyString
   city: MyString
   zip: MyString
   region: one
