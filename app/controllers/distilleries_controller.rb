@@ -6,7 +6,7 @@ class DistilleriesController < ApplicationController
   # GET /distilleries
   # GET /distilleries.json
   def index
-    @distilleries = Distillery.all.map.sort_by(&:name)
+    @distilleries = Distillery.order(:name)
   end
 
   # GET /distilleries/1
@@ -28,7 +28,7 @@ class DistilleriesController < ApplicationController
 
     respond_to do |format|
       if @distillery.save
-        format.html { redirect_to @distillery, class: 'alert alert-info', role: 'alert', notice: 'Distillery was successfully created.' }
+        format.html { redirect_to @distillery, class: "alert alert-info", role: "alert", notice: "Distillery was successfully created." }
         format.json { render :show, status: :created, location: @distillery }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DistilleriesController < ApplicationController
   def update
     respond_to do |format|
       if @distillery.update(distillery_params)
-        format.html { redirect_to @distillery, class: 'alert alert-info', role: 'alert', notice: 'Distillery was successfully updated.' }
+        format.html { redirect_to @distillery, class: "alert alert-info", role: "alert", notice: "Distillery was successfully updated." }
         format.json { render :show, status: :ok, location: @distillery }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class DistilleriesController < ApplicationController
   def destroy
     @distillery.destroy
     respond_to do |format|
-      format.html { redirect_to distilleries_url, notice: 'Distillery was successfully destroyed.' }
+      format.html { redirect_to distilleries_url, notice: "Distillery was successfully destroyed." }
       format.json { head :no_content }
     end
   end

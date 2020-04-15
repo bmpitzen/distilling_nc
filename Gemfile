@@ -7,6 +7,10 @@ ruby '2.6.3'
 # Bootstrap for styling
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+# RSpec for testing
+gem 'rspec'
+#Kaminari for pagination
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0.rc1'

@@ -1,16 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%= render "menubar" %>
 
-<p>
-  <strong>Category:</strong>
-  <%= @spirit_type.category %>
-</p>
+<body class="mx-auto container">
 
-<% Spirit.all.where(spirit_type_id: @spirit_type.id).each do |s| %>
-<%= link_to s.name, spirit_path(s) %>
-<% end %>
+  <h1><%= @spirit_type.category %></h1>
 
 
-<br>
-<br>
-<%= link_to 'Edit', edit_spirit_type_path(@spirit_type) %> |
-<%= link_to 'Back', spirit_types_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Spirit</th>
+      <th scope="col">Distillery</th>
+      <th scope="col">Proof</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Spirit.all.where(spirit_type_id: @spirit_type.id).each do |s| %>
+    <tr>
+      <td scope="row"><%= link_to s.name, spirit_path(s) %></td>
+      <td scope="row"><%= link_to Distillery.find(s.distillery_id).name, Distillery.find(s.distillery_id) %></td>
+      <td scope="row"><%= s.proof %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
