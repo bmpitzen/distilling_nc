@@ -6,7 +6,7 @@ class DistilleriesController < ApplicationController
   # GET /distilleries
   # GET /distilleries.json
   def index
-    @distilleries = Distillery.order(:name)
+    @distilleries = Distillery.order(:name).page(params[:page]).per(10)
   end
 
   # GET /distilleries/1

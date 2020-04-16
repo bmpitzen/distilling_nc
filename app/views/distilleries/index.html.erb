@@ -4,6 +4,8 @@
 
 <h1><strong>All Distilleries</strong></h1>
 <br>
+<%= paginate @distilleries %>
+<br>
 <table class="table">
   <thead>
     <tr>
@@ -22,13 +24,15 @@
         <td><address><%= d.street_address %>, <%= d.city %>, NC <%= d.zip %></address></td>
         <td><%= link_to Region.find(d.region_id).region, Region.find(d.region_id) %></td>
         <% if d.tours == true %>
-          <% if d.tour_cost.to_i > 0 %>
+          <% if d.tour_cost == 'Call' %>
+            <td>Call for more info</td>
+          <% elsif d.tour_cost.to_i > 0 %>
             <td>Tour cost: $<%= d.tour_cost %></td>
           <% else %> 
             <td>Tour cost: Free!</td>
           <% end %>
         <% else %>
-          <td>No</td>
+          <td>No tours offered</td>
         <% end %>
         <td><%= link_to d.website, "http://#{d.website}", :target => "_blank" %></td>
       </tr>
@@ -36,5 +40,7 @@
   </tbody>
 
 </table>
+<%= paginate @distilleries %>
+<br>
 
 </body>
