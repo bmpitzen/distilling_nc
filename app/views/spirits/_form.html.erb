@@ -18,12 +18,12 @@
 
   <div class="field">
     <%= form.label :distillery_id %>
-    <%= form.select :distillery_id, Distillery.all.map {|d| [d.name, d.id] }, prompt:'-' %>
+    <%= form.select :distillery_id, Distillery.order(:name).map {|d| [d.name, d.id] }, prompt:'-' %>
   </div>
 
   <div class="field">
     <%= form.label :spirit_type_id %>
-    <%= form.select :spirit_type_id, SpiritType.all.map {|t| [t.category, t.id] }, prompt:'-' %>
+    <%= form.select :spirit_type_id, SpiritType.order(:category).map {|t| [t.category, t.id] }, prompt:'-' %>
   </div>
 
   <div class="field">
