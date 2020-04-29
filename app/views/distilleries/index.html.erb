@@ -34,7 +34,11 @@
         <% else %>
           <td>No tours offered</td>
         <% end %>
-        <td><%= link_to d.website, "http://#{d.website}", :target => "_blank" %></td>
+        <% if d.website.to_s == '' %>
+          <td>Unavailable</td>
+        <% else %>
+          <td><%= link_to d.website, "http://#{d.website}", :target => "_blank" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
