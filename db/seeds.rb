@@ -6,10 +6,47 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'CSV'
+require "CSV"
 
 Spirit.destroy_all
 Distillery.destroy_all
+Region.destroy_all
+SpiritType.destroy_all
+
+Region.create(
+  id: 1,
+  region: "Mountain",
+)
+Region.create(
+  id: 2,
+  region: "Piedmont",
+)
+Region.create(
+  id: 3,
+  region: "Coastal",
+)
+
+SpiritType.create(
+  category: "Whiskey",
+)
+SpiritType.create(
+  category: "Moonshine",
+)
+SpiritType.create(
+  category: "Vodka",
+)
+SpiritType.create(
+  category: "Gin",
+)
+SpiritType.create(
+  category: "Rum",
+)
+SpiritType.create(
+  category: "Tequila",
+)
+SpiritType.create(
+  category: "Liqueurs",
+)
 
 CSV.foreach(Rails.root.join("lib/assets/DistillingNC_distilleries_seed.csv"), headers: true) do |row|
   Distillery.create({
@@ -20,6 +57,6 @@ CSV.foreach(Rails.root.join("lib/assets/DistillingNC_distilleries_seed.csv"), he
     region_id: row[4],
     tours: row[5],
     tour_cost: row[6],
-    website: row[7]
+    website: row[7],
   })
 end
