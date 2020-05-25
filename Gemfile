@@ -13,6 +13,8 @@ gem 'rspec'
 gem 'kaminari'
 # Devise for user authentication
 gem 'devise'
+# Solargraph for Ruby linting support
+gem 'solargraph', group: :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0.rc1'
